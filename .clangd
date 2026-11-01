@@ -1,0 +1,4 @@
+CompileFlags:
+  Add:
+    - "-I/storage/emulated/0/AndroidCSProjects/arcadia-memaar-management"
+  CompilationDatabase: "/storage/emulated/0/AndroidCSProjects/arcadia-memaar-management"
