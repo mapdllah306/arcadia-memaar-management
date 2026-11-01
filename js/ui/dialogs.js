@@ -1,6 +1,6 @@
-// Modular V0.2.1: createDialogs. UI demo only.
+// Modular V0.2.2: createDialogs. UI demo only.
 export function createDialogs(ctx) {
-  const { data, icon, esc, btn } = ctx;
+  const { $, data, icon, esc, btn } = ctx;
   function toast(text){$('toast').textContent=text;$('toast').classList.add('visible');clearTimeout(toast.timeout);toast.timeout=setTimeout(()=>$('toast').classList.remove('visible'),3300);}
   let previousFocus=null;
   function closeDialog(){previousFocus?.focus?.(); previousFocus=null; $('dialog-root').innerHTML=''; document.body.style.overflow=''; }

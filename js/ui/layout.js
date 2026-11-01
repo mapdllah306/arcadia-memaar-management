@@ -1,6 +1,6 @@
-// Modular V0.2.1: createLayout. UI demo only.
+// Modular V0.2.2: createLayout. UI demo only.
 export function createLayout(ctx) {
-  const { data, state, icon, esc, NAV, company, site, dashboard, companies, sitesPage, employeesPage, tasksPage, attendance, reports, settings } = ctx;
+  const { $, data, state, icon, esc, NAV, company, site, dashboard, companies, sitesPage, employeesPage, tasksPage, attendance, reports, settings } = ctx;
   function renderPage(){
     const renderers={dashboard,companies,sites:sitesPage,employees:employeesPage,tasks:()=>tasksPage(),security:()=>tasksPage('security'),cleaning:()=>tasksPage('cleaning'),maintenance:()=>tasksPage('maintenance'),attendance,reports,settings};
     $('side-nav').innerHTML=NAV.map(([id,ic,title])=>`<button class="nav-item ${state.page===id?'active':''}" data-page="${id}" ${state.page===id?'aria-current="page"':''}>${icon(ic)}<span>${title}</span></button>`).join('');

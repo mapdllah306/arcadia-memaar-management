@@ -1,6 +1,6 @@
-// Modular V0.2.1: createEmployeeActions. UI demo only.
+// Modular V0.2.2: createEmployeeActions. UI demo only.
 export function createEmployeeActions(ctx) {
-  const { data, state, esc, save, company, site, employee, btn, refresh, toast, closeDialog, dialog, formGroup, selectGroup, companyOptions, siteOptions, validateForm } = ctx;
+  const { $, data, state, esc, save, company, site, employee, btn, refresh, toast, closeDialog, dialog, formGroup, selectGroup, companyOptions, siteOptions, validateForm } = ctx;
   function newEmployee(){if(!data.sites.length){toast('أضف موقعًا أولًا');return;}const companyId=state.company==='all'?data.sites[0].companyId:state.company;
     dialog('إضافة موظف تجريبي',`<form id="new-employee-form"><div class="form-grid">${formGroup('الاسم','employee-name','text',true,'maxlength="100"',true)}${selectGroup('الشركة','employee-company',companyOptions())}${selectGroup('الموقع','employee-site',siteOptions(companyId))}${selectGroup('القسم','employee-department',[{value:'security',label:'الأمن'},{value:'cleaning',label:'النظافة'},{value:'maintenance',label:'الصيانة'}])}${formGroup('المسمى الوظيفي','employee-job','text',true,'maxlength="80"')}${selectGroup('الوردية','employee-shift',[{value:'صباحية',label:'صباحية'},{value:'مسائية',label:'مسائية'},{value:'ليلية',label:'ليلية'}])}</div></form>`, `<button class="btn" data-action="close-dialog">إلغاء</button><button class="btn btn-primary" data-action="submit-employee">حفظ الموظف</button>`);
     $('employee-company').value=companyId;$('employee-site').value=state.site!=='all'?state.site:siteOptions(companyId)[0]?.value;

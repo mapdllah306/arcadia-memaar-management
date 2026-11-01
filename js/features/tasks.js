@@ -1,6 +1,6 @@
-// Modular V0.2.1: createTaskActions. UI demo only.
+// Modular V0.2.2: createTaskActions. UI demo only.
 export function createTaskActions(ctx) {
-  const { data, state, icon, esc, day, LABELS, save, company, site, employee, companyName, siteName, employeeName, deptName, fTasks, badge, priority, fmtDate, btn, refresh, toast, closeDialog, dialog, formGroup, selectGroup, companyOptions, siteOptions, employeeOptions, safeCsvCell } = ctx;
+  const { $, data, state, icon, esc, day, LABELS, save, company, site, employee, companyName, siteName, employeeName, deptName, fTasks, badge, priority, fmtDate, btn, refresh, toast, closeDialog, dialog, formGroup, selectGroup, companyOptions, siteOptions, employeeOptions, safeCsvCell } = ctx;
   function newTask(){
     if(!data.sites.length){toast('أضف موقعًا أولًا');return;}
     const initialCompany=state.company==='all'?data.sites[0].companyId:state.company;

@@ -1,22 +1,22 @@
-// V0.2.1 — modular browser-native ES modules (no build step required).
+// V0.2.2 — modular browser-native ES modules (no build step required).
 // Static hosting compatible: GitHub Pages. Demo data remains local-only.
-import {$,icon,esc,day,safeCsvCell} from './core/utils.js';
-import {createSeed} from './core/seed.js';
-import {LABELS,STATUS_CLASS,NAV} from './core/config.js';
-import {createStore} from './core/store.js';
-import {createTemplates} from './ui/templates.js';
-import {createDashboardPage} from './pages/dashboard.js';
-import {createSitesPages} from './pages/sites.js';
-import {createEmployeePage} from './pages/employees.js';
-import {createTasksPage} from './pages/tasks.js';
-import {createReportsPages} from './pages/reports.js';
-import {createLayout} from './ui/layout.js';
-import {createDialogs} from './ui/dialogs.js';
-import {createFormOptions} from './features/form-options.js';
-import {createTaskActions} from './features/tasks.js';
-import {createSiteActions} from './features/sites.js';
-import {createEmployeeActions} from './features/employees.js';
-import {initEvents} from './ui/events.js';
+import {$,icon,esc,day,safeCsvCell} from './core/utils.js?v=0.2.2';
+import {createSeed} from './core/seed.js?v=0.2.2';
+import {LABELS,STATUS_CLASS,NAV} from './core/config.js?v=0.2.2';
+import {createStore} from './core/store.js?v=0.2.2';
+import {createTemplates} from './ui/templates.js?v=0.2.2';
+import {createDashboardPage} from './pages/dashboard.js?v=0.2.2';
+import {createSitesPages} from './pages/sites.js?v=0.2.2';
+import {createEmployeePage} from './pages/employees.js?v=0.2.2';
+import {createTasksPage} from './pages/tasks.js?v=0.2.2';
+import {createReportsPages} from './pages/reports.js?v=0.2.2';
+import {createLayout} from './ui/layout.js?v=0.2.2';
+import {createDialogs} from './ui/dialogs.js?v=0.2.2';
+import {createFormOptions} from './features/form-options.js?v=0.2.2';
+import {createTaskActions} from './features/tasks.js?v=0.2.2';
+import {createSiteActions} from './features/sites.js?v=0.2.2';
+import {createEmployeeActions} from './features/employees.js?v=0.2.2';
+import {initEvents} from './ui/events.js?v=0.2.2';
 
 const SEED=createSeed(day);
 const {data,save,resetData}=createStore(SEED);

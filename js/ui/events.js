@@ -1,7 +1,7 @@
-// Modular V0.2.1: initEvents. UI demo only.
+// Modular V0.2.2: initEvents. UI demo only.
 export function initEvents(ctx) {
-  const { data, state, SEED, save, company, site, employee, btn, renderPage, refresh, toast, closeDialog, dialog, newTask, submitTask, newSite, submitSite, newEmployee, submitEmployee, taskDetail, csvExport } = ctx;
-  function resetDemo(){if(!confirm('هل تريد حذف التعديلات التجريبية وإعادة البيانات الأصلية؟'))return;data=structuredClone(SEED);save();closeDialog();state.company='all';state.site='all';state.search='';state.status='all';refresh();toast('أُعيدت البيانات التجريبية');}
+  const { $, data, state, SEED, save, resetData, company, site, employee, btn, renderPage, refresh, toast, closeDialog, dialog, newTask, submitTask, newSite, submitSite, newEmployee, submitEmployee, taskDetail, csvExport } = ctx;
+  function resetDemo(){if(!confirm('هل تريد حذف التعديلات التجريبية وإعادة البيانات الأصلية؟'))return;resetData();closeDialog();state.company='all';state.site='all';state.search='';state.status='all';refresh();toast('أُعيدت البيانات التجريبية');}
   function closeSidebar(){$('sidebar').classList.remove('open');$('overlay').classList.remove('visible');}
   document.addEventListener('click',e=>{
     const nav=e.target.closest('[data-page]');if(nav){state.page=nav.dataset.page;state.search='';state.status='all';closeSidebar();renderPage();window.scrollTo({top:0,behavior:'auto'});return;}

@@ -15,7 +15,7 @@ export function createReportsPages(ctx) {
   }
   function settings(){
     return heading('System configuration','إعدادات النظام','المعايير الأساسية للنموذج الاستعراضي')+demoNotice+
-      `<section class="panel-grid">${panel('بيئة العرض',`<div class="report-stat"><span>اسم النظام</span><strong>Operations Hub</strong></div><div class="report-stat"><span>نسخة النموذج</span><strong>0.2.1</strong></div><div class="report-stat"><span>طريقة التخزين الحالية</span><strong>LocalStorage</strong></div><div class="report-stat"><span>تسجيل الدخول والصلاحيات</span><strong style="color:#e4b37e">غير مفعّل بعد</strong></div><div class="report-stat"><span>قاعدة بيانات حقيقية</span><strong style="color:#e4b37e">غير متصلة</strong></div>`) }
+      `<section class="panel-grid">${panel('بيئة العرض',`<div class="report-stat"><span>اسم النظام</span><strong>Operations Hub</strong></div><div class="report-stat"><span>نسخة النموذج</span><strong>0.2.2</strong></div><div class="report-stat"><span>طريقة التخزين الحالية</span><strong>LocalStorage</strong></div><div class="report-stat"><span>تسجيل الدخول والصلاحيات</span><strong style="color:#e4b37e">غير مفعّل بعد</strong></div><div class="report-stat"><span>قاعدة بيانات حقيقية</span><strong style="color:#e4b37e">غير متصلة</strong></div>`) }
       ${panel('بيانات النموذج',`<p class="muted">يمكن إعادة بيانات الاختبار إلى وضعها الأصلي. ستُحذف التعديلات التجريبية المخزنة في هذا المتصفح فقط.</p>${btn('إعادة البيانات الافتراضية','reset-demo','reload','btn-danger')}<div class="warn-box">لا تستخدم النموذج لتخزين بيانات حقيقية أو شخصية: هذه نسخة لتجربة التصميم ومسارات العمل، وليست نظامًا آمنًا للنشر.</div>`)}</section>`;
   }
   return { attendance, reports, settings };
