@@ -1,2 +1,40 @@
-# arcadia-memaar-management
-Unified Facility &amp; Workforce Management System
+# ARCADIA × MEMAAR DEGLA — Modular Demo V0.1
+
+هذه النسخة من النموذج الأولي مفصولة إلى HTML وCSS وJavaScript، مع الحفاظ على الواجهة والوظائف التجريبية والشعارين.
+
+## الملفات
+
+```text
+ARCADIA_MEMAAR_Modular_V0.1/
+├── index.html                HTML: هيكل الصفحة فقط، دون CSS أو JavaScript مضمن
+├── styles.css                CSS: تنسيقات الموقع والهواتف
+├── app.js                    JavaScript: واجهات الصفحات والبيانات التجريبية والتفاعل
+├── assets/
+│   ├── arcadia-logo.png
+│   └── memaar-degla-logo.png
+└── database/
+    └── schema.sql            مخطط أولي للمراجعة، لا يُستخدم للإنتاج مباشرة
+```
+
+## التشغيل
+
+1. فك ضغط ZIP بالكامل، مع الاحتفاظ ببنية المجلدات.
+2. افتح `index.html` في Chrome/Edge، أو افتح المجلد في VS Code واستخدم Live Server.
+3. بديل: افتح نافذة Terminal داخل المجلد ثم شغّل `python -m http.server 8080` وافتح `http://localhost:8080`.
+
+**مهم:** يجب إبقاء ملفات `index.html` و`styles.css` و`app.js` في نفس المجلد مع مجلد `assets` المجاور لهم حتى تُحمّل الروابط النسبية بشكل صحيح.
+
+## الملفات المرتبطة من HTML
+
+```html
+<link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script>
+```
+
+## حالة النسخة
+
+نموذج استعراضي محلي؛ البيانات افتراضية وتُخزن في متصفح المستخدم عبر LocalStorage. لا توجد مصادقة أو صلاحيات حقيقية أو قاعدة بيانات مشتركة أو مزامنة بين الأجهزة أو اتصال بخادم. لا تُدخل بيانات تشغيل حقيقية أو حساسة قبل إكمال نظام الخادم والحماية والاختبارات. مخطط SQL للتخطيط فقط، وليس جاهزًا للإنتاج.
+
+## التحويل لتطبيق لاحقًا
+
+بعد نشر الموقع على HTTPS والانتهاء من الربط والصلاحيات، يمكن عرض نفس الموقع داخل تطبيق Flutter WebView دون إعادة بناء صفحات الواجهة.
