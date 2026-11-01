@@ -1,0 +1,38 @@
+/* ARCADIA × MEMAAR DEGLA | V0.2.1 | dashboard */
+.stats-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-bottom:22px}
+.metric-card{padding:20px 21px;position:relative;overflow:hidden}
+.metric-card:after{content:"";width:75px;height:75px;position:absolute;border-radius:50%;background:radial-gradient(circle,#d9ab5c12,transparent 70%);top:-20px;left:-20px}
+.metric-head{display:flex;justify-content:space-between;align-items:center;gap:6px;color:#b3bbc4;font-size:11px}
+.metric-head .icon{color:var(--gold)}
+.metric-value{font:700 31px Arial,sans-serif;margin:16px 0 8px;direction:ltr;text-align:right;letter-spacing:-.8px}
+.metric-foot{color:var(--muted);font-size:10px}
+.panel-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:18px;margin-bottom:20px}
+.progress-row{margin:18px 0}
+.progress-row:last-child{margin-bottom:4px}
+.progress-meta{display:flex;justify-content:space-between;align-items:center;font-size:12px;margin-bottom:8px}
+.progress-meta span:last-child{color:var(--muted);font:700 11px Arial,sans-serif}
+.progress-track{height:9px;background:#282d34;border-radius:20px;overflow:hidden}
+.progress-fill{height:100%;border-radius:20px;background:linear-gradient(90deg,#a97b39,#edc67f)}
+.overview-site{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:13px 0;border-bottom:1px solid #292f35}
+.overview-site:last-child{border:0}
+.site-title{font-weight:700}
+.site-sub{font-size:10px;color:var(--muted)}
+.site-right{text-align:left}
+.site-right strong{font:700 16px Arial}
+.site-right small{display:block;font-size:10px;color:var(--muted)}
+.panel-wide{margin-bottom:20px}
+.mini-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-bottom:20px}
+.feature-tile{background:#171b20;border:1px solid #303640;border-radius:13px;padding:17px}
+.feature-tile span{color:var(--muted);font-size:11px;display:block}
+.feature-tile strong{display:block;font:700 26px Arial;margin:12px 0 4px}
+.feature-tile small{color:#9ca4ae}
+.timeline{display:flex;flex-direction:column}
+.timeline-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid #30343a}
+.timeline-item:last-child{border:0}
+.timeline-bullet{width:28px;height:28px;background:#28281f;border:1px solid #6e5b39;display:grid;place-items:center;border-radius:50%;flex-shrink:0;color:var(--gold)}
+.timeline-item strong{font-size:11px}
+.timeline-item p{font-size:10px;color:var(--muted);margin:2px 0}
+.report-stat{display:grid;grid-template-columns:1fr auto;gap:15px;padding:15px 0;border-bottom:1px solid var(--border);align-items:center}
+.report-stat:last-child{border:0}
+.report-stat .value{font:700 17px Arial}
+.no-data{padding:30px;color:var(--muted)}
