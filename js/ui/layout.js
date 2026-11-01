@@ -6,6 +6,8 @@ export function createLayout(ctx) {
     $('side-nav').innerHTML=NAV.map(([id,ic,title])=>`<button class="nav-item ${state.page===id?'active':''}" data-page="${id}" ${state.page===id?'aria-current="page"':''}>${icon(ic)}<span>${title}</span></button>`).join('');
     const label=NAV.find(x=>x[0]===state.page)?.[2]||'لوحة التحكم';
     $('breadcrumb').innerHTML=`النظام <span class="small-sep"></span> <strong>${esc(label)}</strong>`;
+    const mobileLabel=$('mobile-page-title');if(mobileLabel)mobileLabel.textContent=label;
+    document.querySelectorAll('#mobile-bottom-nav [data-page]').forEach(button=>{const active=button.dataset.page===state.page;button.classList.toggle('active',active);if(active)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});
     $('content').innerHTML=(renderers[state.page]||dashboard)();
   }
   function renderFilters(){

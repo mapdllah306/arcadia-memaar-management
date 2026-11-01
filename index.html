@@ -6,10 +6,11 @@
   <meta name="theme-color" content="#0b0d11">
   <meta name="description" content="نموذج أولي لنظام إدارة التشغيل لشركتي ARCADIA وMEMAAR DEGLA">
   <title>Operations Hub | ARCADIA × MEMAAR DEGLA</title>
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/dashboard.css">
-  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/main.css?v=0.2.3">
+  <link rel="stylesheet" href="css/components.css?v=0.2.3">
+  <link rel="stylesheet" href="css/dashboard.css?v=0.2.3">
+  <link rel="stylesheet" href="css/responsive.css?v=0.2.3">
+  <link rel="stylesheet" href="css/mobile-premium.css?v=0.2.3">
 </head>
 <body>
 <svg aria-hidden="true" class="sprite" xmlns="http://www.w3.org/2000/svg">
@@ -53,14 +54,14 @@
     <div class="side-section-label">قائمة النظام</div>
     <nav id="side-nav"></nav>
     <div class="side-bottom">
-      <div class="prototype-notice"><span class="prototype-pulse"></span><div><strong>نسخة استعراضية 0.2.2</strong><small>البيانات للتجربة فقط — لا يوجد خادم أو حسابات فعلية</small></div></div>
+      <div class="prototype-notice"><span class="prototype-pulse"></span><div><strong>نسخة استعراضية 0.2.3</strong><small>البيانات للتجربة فقط — لا يوجد خادم أو حسابات فعلية</small></div></div>
       <div class="build-version">© 2026 ARCADIA × MEMAAR DEGLA</div>
     </div>
   </aside>
   <div class="sidebar-overlay" id="overlay"></div>
   <div class="main-column">
     <header class="topbar">
-      <div class="topbar-start"><button class="icon-btn mobile-menu" id="menu-btn" aria-label="فتح القائمة"><svg class="icon"><use href="#i-menu"/></svg></button><div class="breadcrumb" id="breadcrumb"></div></div>
+      <div class="topbar-start"><button class="icon-btn mobile-menu" id="menu-btn" aria-label="فتح القائمة"><svg class="icon"><use href="#i-menu"/></svg></button><div class="mobile-header-identity" aria-hidden="true"><span class="mobile-brand-logo">AM<span>.</span></span><span class="mobile-header-titles"><strong>Operations Hub</strong><small id="mobile-page-title">لوحة التحكم</small></span></div><div class="breadcrumb" id="breadcrumb"></div></div>
       <div class="topbar-end">
         <div class="top-filter"><label for="company-filter">الشركة</label><select id="company-filter"><option value="all">جميع الشركات</option></select></div>
         <div class="top-filter site-filter"><label for="site-filter">الموقع</label><select id="site-filter"><option value="all">جميع المواقع</option></select></div>
@@ -69,12 +70,19 @@
       </div>
     </header>
     <main class="content" id="content" tabindex="-1"></main>
+    <nav class="mobile-bottom-nav" id="mobile-bottom-nav" aria-label="التنقل السريع">
+      <button type="button" data-page="dashboard" class="bottom-nav-item active"><svg class="icon" aria-hidden="true"><use href="#i-grid"></use></svg><span>الرئيسية</span></button>
+      <button type="button" data-page="tasks" class="bottom-nav-item"><svg class="icon" aria-hidden="true"><use href="#i-clipboard"></use></svg><span>المهام</span></button>
+      <button type="button" data-page="sites" class="bottom-nav-item"><svg class="icon" aria-hidden="true"><use href="#i-map"></use></svg><span>المواقع</span></button>
+      <button type="button" data-page="employees" class="bottom-nav-item"><svg class="icon" aria-hidden="true"><use href="#i-users"></use></svg><span>الموظفون</span></button>
+      <button type="button" id="bottom-menu-btn" class="bottom-nav-item" aria-label="فتح جميع الأقسام"><svg class="icon" aria-hidden="true"><use href="#i-menu"></use></svg><span>المزيد</span></button>
+    </nav>
     <footer class="footer"><span>ARCADIA × MEMAAR DEGLA • Operations Hub</span><span>نموذج أولي محلي — غير مخصص للاستخدام التشغيلي الحقيقي</span></footer>
   </div>
 </div>
 <div id="dialog-root"></div>
 <div id="toast" role="status" aria-live="polite"></div>
-<script type="module" src="js/app.js?v=0.2.2"></script>
+<script type="module" src="js/app.js?v=0.2.3"></script>
 <noscript><p style="padding:1rem;text-align:center">يتطلب تشغيل هذه الواجهة تفعيل JavaScript.</p></noscript>
 </body>
 </html>

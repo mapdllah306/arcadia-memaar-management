@@ -2,7 +2,7 @@
 export function initEvents(ctx) {
   const { $, data, state, SEED, save, resetData, company, site, employee, btn, renderPage, refresh, toast, closeDialog, dialog, newTask, submitTask, newSite, submitSite, newEmployee, submitEmployee, taskDetail, csvExport } = ctx;
   function resetDemo(){if(!confirm('هل تريد حذف التعديلات التجريبية وإعادة البيانات الأصلية؟'))return;resetData();closeDialog();state.company='all';state.site='all';state.search='';state.status='all';refresh();toast('أُعيدت البيانات التجريبية');}
-  function closeSidebar(){$('sidebar').classList.remove('open');$('overlay').classList.remove('visible');}
+  function closeSidebar(){$('sidebar').classList.remove('open');$('overlay').classList.remove('visible');$('menu-btn').setAttribute('aria-expanded','false');}
   document.addEventListener('click',e=>{
     const nav=e.target.closest('[data-page]');if(nav){state.page=nav.dataset.page;state.search='';state.status='all';closeSidebar();renderPage();window.scrollTo({top:0,behavior:'auto'});return;}
     const a=e.target.closest('[data-action]');if(a){const action=a.dataset.action;
@@ -17,8 +17,10 @@ export function initEvents(ctx) {
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeDialog();closeSidebar();}});
   $('company-filter').addEventListener('change',e=>{state.company=e.target.value;state.site='all';state.search='';refresh();});
   $('site-filter').addEventListener('change',e=>{state.site=e.target.value;state.search='';renderPage();});
-  $('menu-btn').addEventListener('click',()=>{$('sidebar').classList.add('open');$('overlay').classList.add('visible');});
+  $('menu-btn').addEventListener('click',()=>{$('sidebar').classList.add('open');$('overlay').classList.add('visible');$('menu-btn').setAttribute('aria-expanded','true');});
   $('overlay').addEventListener('click',closeSidebar);
+  const bottomMenu=$('bottom-menu-btn');if(bottomMenu)bottomMenu.addEventListener('click',()=>{$('sidebar').classList.add('open');$('overlay').classList.add('visible');$('menu-btn').setAttribute('aria-expanded','true');});
+  $('menu-btn').setAttribute('aria-expanded','false');
   $('notification-btn').addEventListener('click',()=>{state.page='maintenance';state.status='pending';state.search='';renderPage();toast('عرض المهام المعلقة — الإشعارات الحقيقية ستُضاف لاحقًا');});
   refresh();
   return { resetDemo, closeSidebar };

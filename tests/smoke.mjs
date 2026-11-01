@@ -3,13 +3,13 @@
 const elements=new Map(), handlers={};
 const el=id=>{
   if(!elements.has(id)){
-    const x={id,innerHTML:'',textContent:'',value:'all',style:{},classList:{add(){},remove(){}},
+    const x={id,innerHTML:'',textContent:'',value:'all',style:{},classList:{add(){},remove(){},toggle(){}},setAttribute(){},removeAttribute(){},
       addEventListener(name,callback){(this.handlers??={})[name]=callback;},focus(){},querySelector(){return x;},setSelectionRange(){},
       reportValidity(){return true;},get selectionStart(){return 0;},get selectionEnd(){return 0;}};
     elements.set(id,x);
   }return elements.get(id);
 };
-globalThis.document={getElementById:el,addEventListener(type,fn){handlers[type]=fn;},body:{style:{}},activeElement:{focus(){}}};
+globalThis.document={getElementById:el,querySelectorAll(){return [];},addEventListener(type,fn){handlers[type]=fn;},body:{style:{}},activeElement:{focus(){}}};
 globalThis.localStorage={getItem(){return null;},setItem(){}};
 globalThis.window={scrollTo(){}};
 globalThis.confirm=()=>true;

@@ -1,6 +1,6 @@
 // Modular V0.2.1: createDashboardPage. UI demo only.
 export function createDashboardPage(ctx) {
-  const { data, esc, site, companyName, siteName, deptName, fTasks, fEmployees, fSites, badge, priority, stat, heading, btn, panel, table, demoNotice } = ctx;
+  const { data, esc, site, companyName, siteName, deptName, fTasks, fEmployees, fSites, badge, priority, stat, heading, btn, panel, table, demoNotice, mobileTaskCard } = ctx;
   function dashboard(){
     const tasks=fTasks(),people=fEmployees(),sites=fSites();
     const done=tasks.filter(t=>t.status==='done').length,opened=tasks.filter(t=>t.status!=='done').length;
@@ -13,7 +13,7 @@ export function createDashboardPage(ctx) {
     return heading('Operations overview','لوحة التحكم الرئيسية','نظرة شاملة على عمليات الأمن والنظافة والصيانة في المواقع المختارة',btn('إضافة مهمة','new-task'))+demoNotice+
       `<section class="stats-grid">${stat('عدد المواقع',sites.length,'building','المولات والكمبوندات والمنشآت')}${stat('عدد الموظفين',people.length,'users',`${present} حاضر في البيانات التجريبية`)}${stat('المهام المكتملة',done,'check',`من أصل ${tasks.length} مهمة`)}${stat('المهام المفتوحة',opened,'alert','بانتظار التنفيذ أو قيد التنفيذ')}</section>`+
       `<section class="panel-grid">${panel('نسب إنجاز الأقسام',progress,'حسب المهام المسجلة')}${panel('حالة المواقع',siteRows,'المهام المفتوحة بكل موقع')}</section>`+
-      panel('آخر المهام المسجلة',table(['المهمة','الموقع','القسم','الحالة','الأولوية','إجراء'],rows),'عرض تجريبي');
+      panel('آخر المهام المسجلة',`<div class="desktop-record-table">${table(['المهمة','الموقع','القسم','الحالة','الأولوية','إجراء'],rows)}</div><div class="mobile-record-list">${recent.length?recent.map(t=>mobileTaskCard(t,{siteName,deptName})).join(''):'<p class="no-data">لا توجد مهام</p>'}</div>`,'عرض تجريبي');
   }
   return { dashboard };
 }
