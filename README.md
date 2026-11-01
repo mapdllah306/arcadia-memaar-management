@@ -1,4 +1,4 @@
-# ARCADIA × MEMAAR DEGLA — Operations Hub V0.2.3
+# ARCADIA × MEMAAR DEGLA — Operations Hub V0.2.4
 
 واجهة إدارة تجريبية باللغة العربية لشركتين تحت إدارة واحدة، مع أقسام الأمن والنظافة والصيانة والحضور والتقارير.
 
@@ -47,9 +47,17 @@ python -m http.server 8000
 - إصلاح زر إعادة ضبط بيانات العرض التجريبي لاستدعاء `resetData()` بدل إسناد إلى ثابت.
 - إزالة المحارف الثنائية من التعبير المنتظم للـ CSV، وإضافة cache-busting لملف التشغيل.
 
-## Mobile UX V0.2.3
+## Mobile UX V0.2.4
 - `css/mobile-premium.css` overrides responsive presentation without altering desktop styles.
 - The bottom navigation renders on screens up to 820px, with the `المزيد` item opening the full sidebar.
 - Dashboard and task screens use responsive cards below 820px; desktop tables remain intact.
 - The company and site filter controls are visible on mobile in the second toolbar row.
 - Manual test widths: 320, 360, 393, 430, 768, 1366 pixels.
+
+## Floating Motion Upgrade V0.2.4
+- Floating pill navigation with real margins on all sides (including safe area) and translucent dark glass surface.
+- Gold light highlight glides between five tabs and supports all 11 pages via More.
+- Soft one-off animations for page navigation, modals, progress bars and button presses.
+- Honors `prefers-reduced-motion` and avoids perpetual GPU animations.
+- Responsive navigation works without any library, compatible with GitHub Pages and future WebView.
+- No change to the demo data storage key or business logic.

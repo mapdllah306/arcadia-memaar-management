@@ -3,7 +3,7 @@
 const elements=new Map(), handlers={};
 const el=id=>{
   if(!elements.has(id)){
-    const x={id,innerHTML:'',textContent:'',value:'all',style:{},classList:{add(){},remove(){},toggle(){}},setAttribute(){},removeAttribute(){},
+    const x={id,innerHTML:'',textContent:'',value:'all',style:{},dataset:{},classList:{add(){},remove(){},toggle(){}},setAttribute(){},removeAttribute(){},
       addEventListener(name,callback){(this.handlers??={})[name]=callback;},focus(){},querySelector(){return x;},setSelectionRange(){},
       reportValidity(){return true;},get selectionStart(){return 0;},get selectionEnd(){return 0;}};
     elements.set(id,x);

@@ -4,7 +4,7 @@ export function initEvents(ctx) {
   function resetDemo(){if(!confirm('هل تريد حذف التعديلات التجريبية وإعادة البيانات الأصلية؟'))return;resetData();closeDialog();state.company='all';state.site='all';state.search='';state.status='all';refresh();toast('أُعيدت البيانات التجريبية');}
   function closeSidebar(){$('sidebar').classList.remove('open');$('overlay').classList.remove('visible');$('menu-btn').setAttribute('aria-expanded','false');}
   document.addEventListener('click',e=>{
-    const nav=e.target.closest('[data-page]');if(nav){state.page=nav.dataset.page;state.search='';state.status='all';closeSidebar();renderPage();window.scrollTo({top:0,behavior:'auto'});return;}
+    const nav=e.target.closest('[data-page]');if(nav){const changed=state.page!==nav.dataset.page;state.page=nav.dataset.page;state.search='';state.status='all';closeSidebar();renderPage({animate:changed});window.scrollTo({top:0,behavior:'auto'});return;}
     const a=e.target.closest('[data-action]');if(a){const action=a.dataset.action;
       if(action==='new-task')newTask();else if(action==='new-site')newSite();else if(action==='new-employee')newEmployee();else if(action==='submit-task')submitTask();else if(action==='submit-site')submitSite();else if(action==='submit-employee')submitEmployee();else if(action==='task-detail')taskDetail(a.dataset.id);else if(action==='update-task'){const t=data.tasks.find(t=>t.id===a.dataset.id);if(t&&['pending','progress','done'].includes($('detail-status').value)){t.status=$('detail-status').value;save();closeDialog();renderPage();toast('تم تحديث حالة المهمة تجريبيًا');}}
       else if(action==='toggle-presence'){const p=employee(a.dataset.id);if(p){p.presence=p.presence==='present'?'absent':'present';save();renderPage();toast('تم تحديث سجل الحضور التجريبي');}}
@@ -21,7 +21,7 @@ export function initEvents(ctx) {
   $('overlay').addEventListener('click',closeSidebar);
   const bottomMenu=$('bottom-menu-btn');if(bottomMenu)bottomMenu.addEventListener('click',()=>{$('sidebar').classList.add('open');$('overlay').classList.add('visible');$('menu-btn').setAttribute('aria-expanded','true');});
   $('menu-btn').setAttribute('aria-expanded','false');
-  $('notification-btn').addEventListener('click',()=>{state.page='maintenance';state.status='pending';state.search='';renderPage();toast('عرض المهام المعلقة — الإشعارات الحقيقية ستُضاف لاحقًا');});
+  $('notification-btn').addEventListener('click',()=>{state.page='maintenance';state.status='pending';state.search='';renderPage({animate:true});toast('عرض المهام المعلقة — الإشعارات الحقيقية ستُضاف لاحقًا');});
   refresh();
   return { resetDemo, closeSidebar };
 }

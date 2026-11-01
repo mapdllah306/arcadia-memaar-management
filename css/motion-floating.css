@@ -1,0 +1,131 @@
+/* ARCADIA × MEMAAR DEGLA | V0.2.4 Floating Navigation & Motion
+   Additive polish on top of V0.2.3; existing desktop layout remains untouched.
+   Only opacity/transform animations for core transitions and respects reduced motion. */
+:root{--ease-premium:cubic-bezier(.22,1,.36,1);--motion-fast:180ms;--motion-standard:360ms}
+
+/* Soft, purposeful feedback for interactive elements across views. */
+.btn,.icon-btn,.table-link,.nav-item,.top-filter select,.data-card,.metric-card{
+  transition:background-color .22s ease,border-color .22s ease,box-shadow .3s ease,color .22s ease,filter .22s ease,transform .35s var(--ease-premium);
+}
+.btn:active,.icon-btn:active,.table-link:active{transform:scale(.965)}
+.btn-primary:hover{box-shadow:0 10px 32px rgba(216,165,83,.19),inset 0 1px rgba(255,255,255,.2)}
+.top-filter select:focus-visible,.select-plain:focus-visible{border-color:#d9ab5c;box-shadow:0 0 0 3px rgba(217,171,92,.14)}
+@media(hover:hover){
+  .data-card:hover,.metric-card:hover{border-color:#6d583c;transform:translateY(-3px);box-shadow:0 13px 36px #0005,0 0 0 1px #c6a36612}
+  .nav-item:not(.active):hover{transform:translateX(-2px)}
+}
+
+/* Page transitions happen on navigation, not on every search keystroke/filter refresh. */
+.content.page-enter > *{animation:pageSoftReveal .46s var(--ease-premium) both}
+.content.page-enter > :nth-child(2){animation-delay:35ms}
+.content.page-enter > :nth-child(3){animation-delay:65ms}
+.content.page-enter > :nth-child(4){animation-delay:90ms}
+.content.page-enter > :nth-child(5){animation-delay:115ms}
+@keyframes pageSoftReveal{from{opacity:.25;transform:translate3d(0,10px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+/* Gentle progress indication on entry, without any repeating animation. */
+.content.page-enter .progress-fill{transform-origin:right center;animation:progressUnfold .7s var(--ease-premium) both}
+@keyframes progressUnfold{from{transform:scaleX(.12);opacity:.5}to{transform:scaleX(1);opacity:1}}
+.dialog-backdrop{animation:veilAppear .24s ease both}
+.dialog-backdrop .dialog{animation:dialogArrive .42s var(--ease-premium) both;transform-origin:50% 90%}
+@keyframes veilAppear{from{opacity:0}to{opacity:1}}
+@keyframes dialogArrive{from{opacity:0;transform:translate3d(0,20px,0) scale(.975)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+
+@media(max-width:820px){
+  /* Reserve sufficient breathing room for the floating dock, incl. curved corners. */
+  .content{padding-bottom:calc(125px + env(safe-area-inset-bottom,0px))}
+  .sidebar{transition:transform .42s var(--ease-premium)}
+  .sidebar-overlay{display:block;position:fixed;inset:0;background:rgba(0,0,0,.56);z-index:20;opacity:0;visibility:hidden;pointer-events:none;backdrop-filter:blur(0);transition:opacity .3s ease,visibility .3s ease,backdrop-filter .3s ease}
+  .sidebar-overlay.visible{display:block;opacity:1;visibility:visible;pointer-events:auto;backdrop-filter:blur(5px)}
+
+  /* Floating navigation: truly detached from all four screen edges. */
+  .mobile-bottom-nav{
+    --dock-glow:rgba(225,178,103,.26);
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    position:fixed;
+    z-index:11;
+    left:50%;right:auto;
+    bottom:calc(15px + env(safe-area-inset-bottom,0px));
+    width:min(540px,calc(100% - 28px));
+    min-height:74px;
+    height:74px;
+    padding:8px;
+    transform:translate3d(-50%,0,0);
+    isolation:isolate;
+    border:1px solid rgba(215,174,105,.32);
+    border-radius:25px;
+    background:linear-gradient(165deg,rgba(35,39,44,.93),rgba(16,19,24,.94));
+    -webkit-backdrop-filter:blur(22px) saturate(130%);
+    backdrop-filter:blur(22px) saturate(130%);
+    box-shadow:0 13px 38px rgba(0,0,0,.66),0 0 24px rgba(218,171,92,.09),inset 0 1px 0 rgba(255,246,217,.12);
+  }
+  /* One golden spotlight glides underneath the selected destination. */
+  .mobile-bottom-nav::before{
+    content:"";
+    position:absolute;
+    z-index:-1;
+    top:8px;bottom:8px;
+    right:8px;
+    width:calc(20% - 3.2px);
+    border-radius:17px;
+    background:radial-gradient(ellipse at 50% 12%,rgba(248,207,135,.20),transparent 78%),linear-gradient(145deg,rgba(181,131,59,.22),rgba(122,86,37,.12));
+    border:1px solid rgba(244,199,122,.2);
+    box-shadow:0 0 23px var(--dock-glow),inset 0 1px rgba(255,237,191,.18);
+    transition:right .5s var(--ease-premium),background-color .3s ease;
+    pointer-events:none;
+  }
+  .mobile-bottom-nav[data-active-slot="1"]::before{right:calc(20% + 4.8px)}
+  .mobile-bottom-nav[data-active-slot="2"]::before{right:calc(40% + 1.6px)}
+  .mobile-bottom-nav[data-active-slot="3"]::before{right:calc(60% - 1.6px)}
+  .mobile-bottom-nav[data-active-slot="4"]::before{right:calc(80% - 4.8px)}
+  .mobile-bottom-nav::after{
+    content:"";position:absolute;left:16%;right:16%;top:-1px;height:1px;pointer-events:none;
+    background:linear-gradient(90deg,transparent,rgba(248,207,140,.5),transparent);
+    opacity:.7;
+  }
+  .bottom-nav-item{
+    min-height:56px;height:56px;
+    padding:3px 1px;
+    border-radius:17px;
+    color:#a5aab4;
+    font-size:10px;
+    font-weight:700;
+    line-height:1.4;
+    background:transparent;
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+    transition:color .25s ease,transform .3s var(--ease-premium),filter .25s ease;
+  }
+  .bottom-nav-item .icon{width:21px;height:21px;transition:transform .4s var(--ease-premium),filter .35s ease}
+  .bottom-nav-item.active{background:transparent;color:#f4cd8d;box-shadow:none}
+  .bottom-nav-item.active::before{display:none}
+  .bottom-nav-item.active::after{
+    content:"";position:absolute;bottom:3px;width:14px;height:2px;border-radius:4px;
+    background:#f5ce8f;box-shadow:0 0 8px #e9b76a,0 0 15px #d7a25888;
+  }
+  .bottom-nav-item.active .icon{filter:drop-shadow(0 0 5px rgba(250,208,140,.55));transform:translateY(-2px) scale(1.065)}
+  .bottom-nav-item:active{transform:scale(.90)}
+  .bottom-nav-item:focus-visible{outline:2px solid #e1b472;outline-offset:-2px}
+  #toast{bottom:calc(106px + env(safe-area-inset-bottom,0px))}
+  .metric-card:active,.data-card:active{transform:scale(.99)}
+  .topbar .mobile-menu:active{transform:scale(.93) rotate(-5deg)}
+  .heading-actions .btn-primary{position:relative;overflow:hidden}
+  .heading-actions .btn-primary::after{content:"";position:absolute;top:0;bottom:0;width:34%;left:-35%;transform:skewX(-24deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);pointer-events:none;transition:left .6s ease}
+  .heading-actions .btn-primary:active::after{left:110%}
+}
+@media(max-width:360px){
+  .mobile-bottom-nav{width:calc(100% - 20px);bottom:calc(11px + env(safe-area-inset-bottom,0px));padding:7px;height:70px;min-height:70px;border-radius:22px}
+  .mobile-bottom-nav::before{top:7px;bottom:7px;right:7px;width:calc(20% - 2.8px)}
+  .mobile-bottom-nav[data-active-slot="1"]::before{right:calc(20% + 4.2px)}
+  .mobile-bottom-nav[data-active-slot="2"]::before{right:calc(40% + 1.4px)}
+  .mobile-bottom-nav[data-active-slot="3"]::before{right:calc(60% - 1.4px)}
+  .mobile-bottom-nav[data-active-slot="4"]::before{right:calc(80% - 4.2px)}
+  .bottom-nav-item{height:54px;min-height:54px;font-size:9px}
+}
+@media(min-width:821px){.mobile-bottom-nav{display:none}}
+@media(prefers-reduced-motion:reduce){
+  .content.page-enter > *, .content.page-enter .progress-fill,.dialog-backdrop,.dialog-backdrop .dialog{animation:none!important}
+  .mobile-bottom-nav::before,.bottom-nav-item,.bottom-nav-item .icon,.sidebar,.sidebar-overlay{transition:none!important}
+  .btn,.icon-btn,.table-link,.nav-item,.top-filter select,.data-card,.metric-card{transition:none!important}
+  .mobile-bottom-nav{-webkit-backdrop-filter:none;backdrop-filter:none;background:#191c21}
+}
